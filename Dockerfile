@@ -2,7 +2,7 @@ FROM iquirino91/grpc AS builder
 
 ENV NGHTTP2_VERSION 1.46.0
 ENV CURL_VERSION 7.80.0
-ENV NGINX_VERSION v1.20.2
+ENV NGINX_VERSION 1.21.4
 
 RUN wget -qO- https://github.com/nghttp2/nghttp2/releases/download/v${NGHTTP2_VERSION}/nghttp2-${NGHTTP2_VERSION}.tar.gz | tar -zxf - \
   && cd nghttp2-${NGHTTP2_VERSION} \
