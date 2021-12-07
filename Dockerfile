@@ -1,4 +1,4 @@
-FROM iquirino91/grpc:alpine AS builder
+FROM iquirino91/grpc AS builder
 
 RUN wget -qO- https://github.com/nghttp2/nghttp2/releases/download/v1.46.0/nghttp2-1.46.0.tar.gz | tar -zxf - \
   && cd nghttp2-1.46.0 \
