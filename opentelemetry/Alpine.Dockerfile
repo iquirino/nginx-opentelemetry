@@ -1,4 +1,4 @@
-FROM iquirino91/nginx-opentelemetry:build AS builder
+FROM iquirino91/nginx:opentelemetry AS builder
 
 FROM alpine
 

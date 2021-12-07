@@ -1,4 +1,4 @@
-FROM iquirino91/nginx:build AS builder
+FROM iquirino91/nginx AS builder
 
 FROM alpine
 
