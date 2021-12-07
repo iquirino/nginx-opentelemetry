@@ -1,13 +1,17 @@
 FROM iquirino91/grpc AS builder
 
-RUN wget -qO- https://github.com/nghttp2/nghttp2/releases/download/v1.46.0/nghttp2-1.46.0.tar.gz | tar -zxf - \
-  && cd nghttp2-1.46.0 \
+ENV NGHTTP2_VERSION 1.46.0
+ENV CURL_VERSION 7.80.0
+ENV NGINX_VERSION v1.20.2
+
+RUN wget -qO- https://github.com/nghttp2/nghttp2/releases/download/v${NGHTTP2_VERSION}/nghttp2-${NGHTTP2_VERSION}.tar.gz | tar -zxf - \
+  && cd nghttp2-${NGHTTP2_VERSION} \
   && ./configure \
   && make -j2 \
   && make install
 
-RUN wget -qO- https://curl.se/download/curl-7.80.0.zip | unzip -qq - \
-  && cd curl-7.80.0 \
+RUN wget -qO- https://curl.se/download/curl-${CURL_VERSION}.zip | unzip -qq - \
+  && cd curl-${CURL_VERSION} \
   && chmod 777 configure \
   && chmod 777 install-sh \
   && ./configure \
@@ -26,8 +30,8 @@ RUN wget -qO- https://curl.se/download/curl-7.80.0.zip | unzip -qq - \
   && make -j2 \
   && make install
 
-RUN wget  -qO- http://nginx.org/download/nginx-1.20.2.tar.gz | tar -zxf - \
-  && cd nginx-1.20.2 \
+RUN wget  -qO- http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz | tar -zxf - \
+  && cd nginx-${NGINX_VERSION} \
   && ./configure \
     --prefix=/etc/nginx \
     --sbin-path=/etc/nginx/nginx \
