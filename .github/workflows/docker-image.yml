@@ -37,7 +37,7 @@ jobs:
     - name: Docker Push
       run: docker push iquirino91/nginx:alpine
   opentelemetry:
-    needs: build
+    needs: alpine
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
