@@ -1,5 +1,6 @@
 FROM iquirino91/nginx
 
+ENV CURL_VERSION 7.80.0
 ENV OPENTELEMETRY_VERSION v1.1.0
 
 RUN wget -qO- https://curl.se/download/curl-${CURL_VERSION}.zip | unzip -qq - \
