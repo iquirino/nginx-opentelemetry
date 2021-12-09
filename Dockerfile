@@ -4,31 +4,7 @@ ENV NGHTTP2_VERSION 1.46.0
 ENV CURL_VERSION 7.80.0
 ENV NGINX_VERSION 1.21.4
 
-RUN wget -qO- https://github.com/nghttp2/nghttp2/releases/download/v${NGHTTP2_VERSION}/nghttp2-${NGHTTP2_VERSION}.tar.gz | tar -zxf - \
-  && cd nghttp2-${NGHTTP2_VERSION} \
-  && ./configure \
-  && make -j2 \
-  && make install
-
-RUN wget -qO- https://curl.se/download/curl-${CURL_VERSION}.zip | unzip -qq - \
-  && cd curl-${CURL_VERSION} \
-  && chmod 777 configure \
-  && chmod 777 install-sh \
-  && ./configure \
-    --with-nghttp2=/usr/local --with-ssl --disable-dependency-tracking \
-    --prefix=/usr \
-    --enable-ipv6 \
-    --enable-unix-sockets \
-    --enable-static \
-    --with-openssl \
-    --without-libidn \
-    --without-libidn2 \
-    --with-nghttp2 \
-    --disable-ldap \
-    --with-pic \
-    --without-libssh2 \
-  && make -j2 \
-  && make install
+RUN apk add libcurl
 
 RUN wget  -qO- http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz | tar -zxf - \
   && cd nginx-${NGINX_VERSION} \
