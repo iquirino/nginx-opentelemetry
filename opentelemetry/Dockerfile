@@ -1,27 +1,12 @@
-FROM iquirino91/nginx
+FROM iquirino91/nginx:alpine
 
-ENV CURL_VERSION 7.80.0
 ENV OPENTELEMETRY_VERSION v1.1.0
 
-RUN wget -qO- https://curl.se/download/curl-${CURL_VERSION}.zip | unzip -qq - \
-  && cd curl-${CURL_VERSION} \
-  && chmod 777 configure \
-  && chmod 777 install-sh \
-  && ./configure \
-    --with-nghttp2=/usr/local --with-ssl --disable-dependency-tracking \
-    --prefix=/usr \
-    --enable-ipv6 \
-    --enable-unix-sockets \
-    --enable-static \
-    --with-openssl \
-    --without-libidn \
-    --without-libidn2 \
-    --with-nghttp2 \
-    --disable-ldap \
-    --with-pic \
-    --without-libssh2 \
-  && make -j2 \
-  && make install
+RUN apk update 
+RUN apk add --update-cache
+RUN apk add --update alpine-sdk
+RUN apk --no-cache --update add build-base
+RUN apk add cmake linux-headers libressl-dev pcre-dev zlib-dev curl-dev
 
 RUN git clone --shallow-submodules --depth 1 --recurse-submodules -b ${OPENTELEMETRY_VERSION} \
   https://github.com/open-telemetry/opentelemetry-cpp.git \
