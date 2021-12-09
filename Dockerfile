@@ -4,8 +4,6 @@ ENV NGHTTP2_VERSION 1.46.0
 ENV CURL_VERSION 7.80.0
 ENV NGINX_VERSION 1.21.4
 
-RUN apk add libcurl
-
 RUN wget  -qO- http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz | tar -zxf - \
   && cd nginx-${NGINX_VERSION} \
   && ./configure \

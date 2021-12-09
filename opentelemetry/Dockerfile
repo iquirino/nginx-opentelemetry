@@ -3,6 +3,8 @@ FROM iquirino91/nginx
 ENV OPENTELEMETRY_VERSION v1.1.0
 ENV OPENTELEMETRY_VERSION_CPP v0.1.0
 
+RUN apk add libcurl
+
 RUN git clone --shallow-submodules --depth 1 --recurse-submodules -b ${OPENTELEMETRY_VERSION} \
   https://github.com/open-telemetry/opentelemetry-cpp.git \
   && cd opentelemetry-cpp \
