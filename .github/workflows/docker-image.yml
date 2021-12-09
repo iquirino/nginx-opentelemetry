@@ -48,7 +48,7 @@ jobs:
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag iquirino91/nginx:opentelemetry
+      run: docker build . --file opentelemetry/Dockerfile --tag iquirino91/nginx:opentelemetry
     - name: Docker Push
       run: docker push iquirino91/nginx:opentelemetry
   opentelemetry-alpine:
@@ -63,6 +63,6 @@ jobs:
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
     - name: Build the Docker image
-      run: docker build . --file Alpine.Dockerfile --tag iquirino91/nginx:opentelemetry-alpine
+      run: docker build . --file opentelemetry/Alpine.Dockerfile --tag iquirino91/nginx:opentelemetry-alpine
     - name: Docker Push
       run: docker push iquirino91/nginx:opentelemetry-alpine
