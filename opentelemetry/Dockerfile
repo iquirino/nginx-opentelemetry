@@ -6,7 +6,7 @@ RUN apk update
 RUN apk add --update-cache
 RUN apk add --update alpine-sdk
 RUN apk --no-cache --update add build-base
-RUN apk add cmake linux-headers libressl-dev pcre-dev zlib-dev curl-dev
+RUN apk add cmake linux-headers libressl-dev pcre-dev zlib-dev grpc-dev curl-dev
 
 RUN git clone --shallow-submodules --depth 1 --recurse-submodules -b ${OPENTELEMETRY_VERSION} \
   https://github.com/open-telemetry/opentelemetry-cpp.git \

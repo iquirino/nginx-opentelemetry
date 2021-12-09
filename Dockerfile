@@ -1,4 +1,4 @@
-FROM iquirino91/grpc AS builder
+FROM alpine AS builder
 
 ENV NGINX_VERSION 1.21.4
 

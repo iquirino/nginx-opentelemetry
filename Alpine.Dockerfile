@@ -6,10 +6,6 @@ COPY --from=builder /etc/passwd /etc/group /etc/
 RUN true
 COPY --from=builder /etc/nginx /etc/nginx
 RUN true
-COPY --from=builder /usr/local/lib /usr/local/lib
-RUN true
-COPY --from=builder /usr/lib /usr/lib
-RUN true
 
 RUN mkdir -p /var/log/nginx/ && \
     echo -n > /var/log/nginx/access.log && \
