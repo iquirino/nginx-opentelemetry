@@ -2,11 +2,8 @@ FROM alpine AS builder
 
 ENV NGINX_VERSION 1.21.4
 
-RUN apk update 
-RUN apk add --update-cache
-RUN apk add --update alpine-sdk
-RUN apk --no-cache --update add build-base
-RUN apk add cmake linux-headers libressl-dev pcre-dev zlib-dev
+RUN apk update \ 
+  && apk add --update alpine-sdk build-base cmake linux-headers libressl-dev pcre-dev zlib-dev
 
 RUN wget  -qO- http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz | tar -zxf - \
   && cd nginx-${NGINX_VERSION} \

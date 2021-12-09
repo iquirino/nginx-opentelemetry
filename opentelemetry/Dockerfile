@@ -2,11 +2,8 @@ FROM iquirino91/nginx:alpine
 
 ENV OPENTELEMETRY_VERSION v1.1.0
 
-RUN apk update 
-RUN apk add --update-cache
-RUN apk add --update alpine-sdk
-RUN apk --no-cache --update add build-base
-RUN apk add cmake linux-headers libressl-dev pcre-dev zlib-dev grpc-dev curl-dev
+RUN apk update \
+  && apk add --update alpine-sdk build-base cmake linux-headers libressl-dev pcre-dev zlib-dev grpc-dev curl-dev protobuf-dev c-ares-dev re2-dev
 
 RUN git clone --shallow-submodules --depth 1 --recurse-submodules -b ${OPENTELEMETRY_VERSION} \
   https://github.com/open-telemetry/opentelemetry-cpp.git \
@@ -21,6 +18,7 @@ RUN git clone --shallow-submodules --depth 1 --recurse-submodules -b ${OPENTELEM
     -DWITH_OTLP_HTTP=OFF \
     -DBUILD_TESTING=OFF \
     -DWITH_EXAMPLES=OFF \
+    -DWITH_ABSEIL=ON \
     -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
     .. \
   && make -j2 \
