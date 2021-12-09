@@ -1,9 +1,26 @@
 FROM iquirino91/nginx
 
 ENV OPENTELEMETRY_VERSION v1.1.0
-ENV OPENTELEMETRY_VERSION_CPP v0.1.0
 
-RUN apk add libcurl
+RUN wget -qO- https://curl.se/download/curl-${CURL_VERSION}.zip | unzip -qq - \
+  && cd curl-${CURL_VERSION} \
+  && chmod 777 configure \
+  && chmod 777 install-sh \
+  && ./configure \
+    --with-nghttp2=/usr/local --with-ssl --disable-dependency-tracking \
+    --prefix=/usr \
+    --enable-ipv6 \
+    --enable-unix-sockets \
+    --enable-static \
+    --with-openssl \
+    --without-libidn \
+    --without-libidn2 \
+    --with-nghttp2 \
+    --disable-ldap \
+    --with-pic \
+    --without-libssh2 \
+  && make -j2 \
+  && make install
 
 RUN git clone --shallow-submodules --depth 1 --recurse-submodules -b ${OPENTELEMETRY_VERSION} \
   https://github.com/open-telemetry/opentelemetry-cpp.git \
