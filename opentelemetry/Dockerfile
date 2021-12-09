@@ -21,8 +21,7 @@ RUN git clone --shallow-submodules --depth 1 --recurse-submodules -b ${OPENTELEM
   && make -j2 \
   && make install
 
-RUN git clone --shallow-submodules --depth 1 --recurse-submodules -b ${OPENTELEMETRY_VERSION_CPP} \
-  https://github.com/open-telemetry/opentelemetry-cpp-contrib.git \
+RUN git clone https://github.com/open-telemetry/opentelemetry-cpp-contrib.git \
   && cd opentelemetry-cpp-contrib/instrumentation/nginx \
   && mkdir build \
   && cd build \
