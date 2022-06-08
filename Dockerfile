@@ -1,7 +1,7 @@
 FROM alpine as builder
 
-ENV NGINX_VERSION 1.21.4
-ENV OPENTELEMETRY_VERSION v1.1.0
+ENV NGINX_VERSION 1.22.0
+ENV OPENTELEMETRY_VERSION v1.4.0
 
 RUN apk update \
   && apk add --update alpine-sdk build-base cmake linux-headers libressl-dev pcre-dev zlib-dev \
