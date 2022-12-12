@@ -4,7 +4,7 @@ ENV NGINX_VERSION 1.22.1
 ENV OPENTELEMETRY_VERSION v1.8.1
 
 RUN apk update \
-  && apk add --update alpine-sdk build-base cmake linux-headers libressl-dev pcre-dev zlib-dev \
+  && apk add --update alpine-sdk build-base cmake linux-headers pcre-dev zlib-dev \
       grpc-dev curl-dev protobuf-dev c-ares-dev re2-dev
 
 RUN wget  -qO- http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz | tar -zxf - \
