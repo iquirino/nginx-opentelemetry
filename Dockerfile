@@ -1,4 +1,4 @@
-FROM alpine:3.15 as builder
+FROM alpine:3.17 as builder
 
 ENV NGINX_VERSION 1.22.1
 ENV OPENTELEMETRY_VERSION v1.8.1
@@ -63,7 +63,7 @@ RUN git clone https://github.com/open-telemetry/opentelemetry-cpp-contrib.git \
   && make install
 
 
-FROM alpine:3.15
+FROM alpine:3.17
 
 COPY --from=builder /etc/passwd /etc/group /etc/
 RUN true
